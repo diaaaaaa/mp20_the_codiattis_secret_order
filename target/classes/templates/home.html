@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <title>Home</title>
+</head>
+<body class="btn btn-success">
+
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+
+<h1>Welcome <span th:text="${loggedUserName}">Lidia</span></h1>
+
+<h2>List of all members</h2>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Member Name</th>
+
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">1</td>
+        <td th:text="${user.username}">Pepe</td>
+
+    </tr>
+</table>
+
+<h2>Invite new member</h2>
+<form th:action="@{/}" th:object="${newUser}" method="post">
+    <label>Member Name</label><br/>
+    <input type="text" th:field="*{username}" required="required" autofocus="autofocus"/><br/>
+    <label>Password</label><br/>
+    <input type="password" th:field="*{password}" required="required" autofocus="autofocus"/><br/>
+
+    <input type="submit" value="Invite "/>
+</form>
+
+
+</body>
+</html>
